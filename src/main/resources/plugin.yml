@@ -1,0 +1,10 @@
+name: StatisticsAPI
+version: '${project.version}'
+main: de.pentamuria.statistics.statisticsapi.StatisticsAPI
+api-version: 1.19
+prefix: StatisticsAPI
+authors: [ MikadoBlanket ]
+description: API for Minecraft Statistics
+commands:
+  statistics:
+    aliases: ["stats"]
