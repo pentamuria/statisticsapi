@@ -22,6 +22,16 @@ public class StatisticsListener implements Listener {
 
         if(e.getView().getTitle().equalsIgnoreCase("§aDeine Statistiken")) {
             e.setCancelled(true);
+            if(e.getSlot()==28) {
+                p.openInventory(plugin.stats.getBlockStatsInv(p, 1));
+            }
+        } else if(e.getView().getTitle().equalsIgnoreCase("§aDeine Block-Stats")) {
+            e.setCancelled(true);
+            if(e.getSlot()==45) {
+                p.openInventory(plugin.stats.getBlockStatsInv(p, Integer.valueOf(e.getCurrentItem().getItemMeta().getDisplayName().split("§d")[1])));
+            } else if(e.getSlot()==53) {
+                p.openInventory(plugin.stats.getBlockStatsInv(p, Integer.valueOf(e.getCurrentItem().getItemMeta().getDisplayName().split("§d")[1])));
+            }
         }
 
     }

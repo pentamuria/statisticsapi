@@ -12,13 +12,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatsManager {
+public class StatsManager extends StatsInventoryManager {
 
 
     private final StatisticsAPI plugin;
     private HashMap<String, Statistics> playerStats;
 
     public StatsManager(StatisticsAPI statisticsAPI) {
+        super(statisticsAPI);
         this.plugin = statisticsAPI;
         playerStats = new HashMap<>();
         loadPlayerStats();
