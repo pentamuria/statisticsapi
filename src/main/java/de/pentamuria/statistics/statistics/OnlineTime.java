@@ -75,7 +75,7 @@ public class OnlineTime {
             dayStr = days + (days>1 || days==0 ? " Tagen, " : " Tag, ");
         }
         if(hours>0 || days>0) {
-            hoursStr = hours + (hours>1 || hours==0 ? " Stunden und" : " Stunde und");
+            hoursStr = hours + (hours>1 || hours==0 ? " Stunden und " : " Stunde und ");
         }
 
         minutesStr = minutes + (minutes>1 || minutes==0 ? " Minuten" : " Minute");
