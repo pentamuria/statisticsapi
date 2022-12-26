@@ -12,14 +12,22 @@ public class Statistics {
     private int placedBlocks;
     private OnlineTime onlineTime;
     private HashMap<Material, Integer> blocks;
+    private double damage;
+    private double mobDamage;
+    private int mobKills;
+    private double damageTaken;
 
 
-    public Statistics(int deaths, int kills, int breakedBlocks, int placedBlocks, HashMap<Material, Integer> blocks) {
+    public Statistics(int deaths, int kills, int breakedBlocks, int placedBlocks, HashMap<Material, Integer> blocks,
+                      double damage, double mobDamage, int mobKills) {
         this.deaths = deaths;
         this.kills = kills;
         this.breakedBlocks = breakedBlocks;
         this.placedBlocks = placedBlocks;
         this.blocks = blocks;
+        this.damage = damage;
+        this.mobDamage = mobDamage;
+        this.mobKills = mobKills;
     }
 
     public Statistics() {
@@ -29,6 +37,10 @@ public class Statistics {
         this.placedBlocks = 0;
         this.onlineTime = new OnlineTime();
         this.blocks = new HashMap<>();
+        this.damage = 0.0;
+        this.mobDamage = 0.0;
+        this.mobKills = 0;
+        this.damageTaken = 0.0;
     }
 
     public int getDeaths() {
@@ -115,5 +127,53 @@ public class Statistics {
             return Material.getMaterial(mat.toString().replace("DEEPSLATE_", ""));
         }
         return mat;
+    }
+
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
+    public void addDamage(double damage) {
+        this.damage+=damage;
+    }
+
+    public double getMobDamage() {
+        return mobDamage;
+    }
+
+    public void setMobDamage(double mobDamage) {
+        this.mobDamage = mobDamage;
+    }
+
+    public void addMobDamage(double mobDamage) {
+        this.mobDamage+=mobDamage;
+    }
+
+    public int getMobKills() {
+        return mobKills;
+    }
+
+    public void setMobKills(int mobKills) {
+        this.mobKills = mobKills;
+    }
+
+    public void addMobKill() {
+        this.mobKills+=1;
+    }
+
+    public double getDamageTaken() {
+        return damageTaken;
+    }
+
+    public void setDamageTaken(double damageTaken) {
+        this.damageTaken = damageTaken;
+    }
+
+    public void addDamageTaken(double damageTaken) {
+        this.damageTaken+=damageTaken;
     }
 }

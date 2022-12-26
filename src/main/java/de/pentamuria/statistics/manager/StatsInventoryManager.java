@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class StatsInventoryManager {
@@ -23,7 +24,7 @@ public class StatsInventoryManager {
         Inventory inv = Bukkit.createInventory(null, 9*5, "§aDeine Statistiken");
 
         Statistics stats = plugin.stats.getPlayerStats(p.getUniqueId().toString());
-
+        DecimalFormat df = new DecimalFormat("0.00");
         inv.setItem(22, new ItemBuilder(Material.CLOCK, 1).setName("§aOnline seit")
                 .addLoreLine("§7")
                 .addLoreLine("§7↣ " + plugin.stats.getPlayerStats(p.getUniqueId().toString()).getOnlineTime().format()).toItemStack());
@@ -33,6 +34,18 @@ public class StatsInventoryManager {
 
         inv.setItem(16, new ItemBuilder(Material.DIAMOND_SWORD, 1).setName("§cDeine Kills")
                 .addLoreLine("").addLoreLine("§7↣ §b" + stats.getKills()).toItemStack());
+
+        inv.setItem(18, new ItemBuilder(Material.WITHER_SKELETON_SKULL, 1).setName("§cDeine Mob-Kills")
+                .addLoreLine("").addLoreLine("§7↣ §b" + stats.getMobKills()).toItemStack());
+
+        inv.setItem(20, new ItemBuilder(Material.SLIME_BALL, 1).setName("§4Dein erhaltener Schaden")
+                .addLoreLine("").addLoreLine("§7↣ §b" + df.format(stats.getDamageTaken())).toItemStack());
+
+        inv.setItem(24, new ItemBuilder(Material.GOLDEN_AXE, 1).setName("§9Dein ausgeteilter Spieler-Schaden")
+                .addLoreLine("").addLoreLine("§7↣ §b" + df.format(stats.getDamage())).toItemStack());
+
+        inv.setItem(26, new ItemBuilder(Material.BOW, 1).setName("§9Dein ausgeteilter Mob-Schaden")
+                .addLoreLine("").addLoreLine("§7↣ §b" + df.format(stats.getMobDamage())).toItemStack());
 
         inv.setItem(28, new ItemBuilder(Material.NETHERITE_PICKAXE, 1).setName("§aAbgebaute Blöcke")
                 .addLoreLine("").addLoreLine("§7↣ §b" + stats.getBreakedBlocks())

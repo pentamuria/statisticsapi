@@ -3,6 +3,7 @@ package de.pentamuria.statistics.manager;
 import de.pentamuria.statistics.statistics.Statistics;
 import de.pentamuria.statistics.statisticsapi.StatisticsAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -82,6 +83,15 @@ public class StatsManager extends StatsInventoryManager {
         cfg.set("OnlineTime.Minutes", stats.getOnlineTime().getMinutes());
         cfg.set("OnlineTime.Hours", stats.getOnlineTime().getHours());
         cfg.set("OnlineTime.Days", stats.getOnlineTime().getDays());
+        cfg.set("Damage", stats.getDamage());
+        cfg.set("Mob.Damage", stats.getMobDamage());
+        cfg.set("Mob.Kills", stats.getMobKills());
+        cfg.set("DamageTaken", stats.getDamageTaken());
+
+        // Blocks
+        for(Material mat : stats.getBlocks().keySet()) {
+            cfg.set("Block." + mat.toString(), stats.getBlocks(mat));
+        }
 
         try {
             cfg.save(file);
@@ -106,6 +116,22 @@ public class StatsManager extends StatsInventoryManager {
             if(cfg.contains("OnlineTime.Minutes"))stats.getOnlineTime().setMinutes(cfg.getInt("OnlineTime.Minutes"));
             if(cfg.contains("OnlineTime.Hours"))stats.getOnlineTime().setHours(cfg.getInt("OnlineTime.Hours"));
             if(cfg.contains("OnlineTime.Days"))stats.getOnlineTime().setDays(cfg.getInt("OnlineTime.Days"));
+            if(cfg.contains("Damage"))stats.setDamage(cfg.getDouble("Damage"));
+            if(cfg.contains("Mob.Damage"))stats.setMobDamage(cfg.getDouble("Mob.Damage"));
+            if(cfg.contains("Mob.Kills"))stats.setMobKills(cfg.getInt("Mob.Kills"));
+            if(cfg.contains("DamageTaken"))stats.setDamageTaken(cfg.getDouble("DamageTaken"));
+            // Blocks
+            HashMap<Material, Integer> blocks = new HashMap<>();
+            for(String key : cfg.getKeys(true)) {
+                if(key.contains("Block.")) {
+                    String matName = key.replace("Block.", "");
+                    Bukkit.getConsoleSender().sendMessage("§cLoad Material §a§l" + matName);
+                    Material mat = Material.getMaterial(matName);
+                    int amount = cfg.getInt(key);
+                    blocks.put(mat, amount);
+                }
+            }
+            stats.setBlocks(blocks);
             return stats;
         } else {
             return new Statistics();
