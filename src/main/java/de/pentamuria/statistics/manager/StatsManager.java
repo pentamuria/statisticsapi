@@ -64,6 +64,9 @@ public class StatsManager extends StatsInventoryManager {
         }
     }
 
+    /**
+     * Upload Stats to server files (Save Data)
+     */
     public void uploadStats() {
         // Iterating HashMap through for loop
         for (Map.Entry<String, Statistics> set :
@@ -72,6 +75,11 @@ public class StatsManager extends StatsInventoryManager {
         }
     }
 
+    /**
+     * Save stat in server file
+     * @param uuid
+     * @param stats
+     */
     private void updateStats(String uuid, Statistics stats) {
         File file = new File("plugins/playerdata/" + uuid, "stats.yml");
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
@@ -102,6 +110,11 @@ public class StatsManager extends StatsInventoryManager {
 
     }
 
+    /**
+     * Load Player stats or create them
+     * @param uuid
+     * @return
+     */
     private Statistics loadStats(String uuid) {
         File file = new File("plugins/playerdata/" + uuid, "stats.yml");
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
