@@ -24,8 +24,12 @@ public class COMMAND_statistics implements CommandExecutor {
 
         if(sender instanceof Player) {
             Player p = (Player)sender;
+            if(!p.isOp()) {
+                p.sendMessage("§4[Fehler] §8- §cDu muss Operator sein!");
+                return true;
+            }
             if(args.length==0) {
-                p.openInventory(plugin.stats.getMainStatisticsInv(p));
+                p.openInventory(plugin.stats.getMainStatisticsInv(p, plugin.stats.getPlayerStats(p.getUniqueId().toString())));
             } else if(args.length==1) {
                 String mat = args[0].toUpperCase();
                 if(mat.equalsIgnoreCase("help") || mat.equalsIgnoreCase("hilfe")) {

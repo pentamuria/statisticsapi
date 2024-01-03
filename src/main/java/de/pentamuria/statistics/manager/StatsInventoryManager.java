@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -20,14 +20,13 @@ public class StatsInventoryManager {
         this.plugin = api;
     }
 
-    public Inventory getMainStatisticsInv(Player p) {
+    public Inventory getMainStatisticsInv(Player p, Statistics stats) {
         Inventory inv = Bukkit.createInventory(null, 9*5, "§aDeine Statistiken");
 
-        Statistics stats = plugin.stats.getPlayerStats(p.getUniqueId().toString());
         DecimalFormat df = new DecimalFormat("0.00");
         inv.setItem(22, new ItemBuilder(Material.CLOCK, 1).setName("§aOnline seit")
                 .addLoreLine("§7")
-                .addLoreLine("§7↣ " + plugin.stats.getPlayerStats(p.getUniqueId().toString()).getOnlineTime().format()).toItemStack());
+                .addLoreLine("§7↣ " + stats.getOnlineTime().format()).toItemStack());
 
         inv.setItem(10, new ItemBuilder(Material.SKELETON_SKULL, 1).setName("§cDeine Tode")
                 .addLoreLine("").addLoreLine("§7↣ §b" + stats.getDeaths()).toItemStack());

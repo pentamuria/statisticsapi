@@ -1,5 +1,6 @@
 package de.pentamuria.statistics.statisticsapi;
 
+import de.pentamuria.statistics.commands.COMMAND_allStatistics;
 import de.pentamuria.statistics.commands.COMMAND_statistics;
 import de.pentamuria.statistics.events.StatisticsListener;
 import de.pentamuria.statistics.manager.StatsManager;
@@ -39,7 +40,10 @@ public final class StatisticsAPI extends JavaPlugin {
 
     private void loadCommands() {
         COMMAND_statistics cCOMMAND_statistics = new COMMAND_statistics(this);
+        COMMAND_allStatistics cCOMMAND_allStatistics = new COMMAND_allStatistics(this);
+
         getCommand("statistics").setExecutor(cCOMMAND_statistics);
+        getCommand("allstatistics").setExecutor(cCOMMAND_allStatistics);
     }
 
     private void startOnlineTimer() {

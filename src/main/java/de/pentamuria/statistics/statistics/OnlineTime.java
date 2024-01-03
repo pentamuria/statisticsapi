@@ -18,6 +18,13 @@ public class OnlineTime {
         this.days = 0;
     }
 
+
+    public OnlineTime(long minutes) {
+        this.days = (int) (minutes/60/24);
+        this.hours = (int) ((minutes-days*60*24)/60);
+        this.minutes = (int) (minutes-(days*60*24)-(hours*60));
+    }
+
     public int getMinutes() {
         return minutes;
     }
@@ -84,4 +91,19 @@ public class OnlineTime {
 
     }
 
+    public long getAllTimeInMinutes() {
+        long dayMin = days*1440;
+        long hoursMin = (hours*60);
+        return dayMin+hoursMin+minutes;
+    }
+
+
+    @Override
+    public String toString() {
+        return "OnlineTime{" +
+                "minutes=" + minutes +
+                ", hours=" + hours +
+                ", days=" + days +
+                '}';
+    }
 }

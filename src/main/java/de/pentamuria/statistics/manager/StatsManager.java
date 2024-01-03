@@ -1,5 +1,6 @@
 package de.pentamuria.statistics.manager;
 
+import de.pentamuria.statistics.statistics.OnlineTime;
 import de.pentamuria.statistics.statistics.Statistics;
 import de.pentamuria.statistics.statisticsapi.StatisticsAPI;
 import org.bukkit.Bukkit;
@@ -138,7 +139,7 @@ public class StatsManager extends StatsInventoryManager {
             for(String key : cfg.getKeys(true)) {
                 if(key.contains("Block.")) {
                     String matName = key.replace("Block.", "");
-                    Bukkit.getConsoleSender().sendMessage("§cLoad Material §a§l" + matName);
+                    // Debug: Bukkit.getConsoleSender().sendMessage("§cLoad Material §a§l" + matName);
                     Material mat = Material.getMaterial(matName);
                     int amount = cfg.getInt(key);
                     blocks.put(mat, amount);
@@ -149,6 +150,26 @@ public class StatsManager extends StatsInventoryManager {
         } else {
             return new Statistics();
         }
+    }
+
+    /**
+     * Errechnet Statistiken von allen Spielern.
+     * @return Statistiken aller Spieler (ohne Blocks HashMap)
+     */
+    public Statistics getAllStats() {
+        File file = new File("plugins/playerdata/");
+
+        Statistics allStats = new Statistics();
+
+        for (String uuid : file.list()) {
+            Statistics playerStatistics = this.loadStats(uuid);
+            allStats.add(playerStatistics);
+        }
+
+
+        OnlineTime onlineTime = new OnlineTime(1530);
+
+        return allStats;
     }
 
 }

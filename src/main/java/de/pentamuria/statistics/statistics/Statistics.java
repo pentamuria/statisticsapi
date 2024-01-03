@@ -51,11 +51,19 @@ public class Statistics {
         deaths+=1;
     }
 
+    public void addDeath(int deaths) {
+        this.deaths+=deaths;
+    }
+
     public int getKills() {
         return kills;
     }
     public void addKill() {
         kills+=1;
+    }
+
+    public void addKill(int kills) {
+        this.kills+=kills;
     }
 
     public int getBreakedBlocks() {
@@ -66,11 +74,19 @@ public class Statistics {
         breakedBlocks+=1;
     }
 
+    public void addBreakedBlocks(int blocks) {
+        breakedBlocks+=blocks;
+    }
+
     public int getPlacedBlocks() {
         return placedBlocks;
     }
     public void addPlacedBlocks() {
         placedBlocks+=1;
+    }
+
+    public void addPlacedBlocks(int blocks) {
+        placedBlocks+=blocks;
     }
 
     public void setDeaths(int deaths) {
@@ -95,6 +111,11 @@ public class Statistics {
 
     public void setOnlineTime(OnlineTime onlineTime) {
         this.onlineTime = onlineTime;
+    }
+
+    private void addOnlineTime(OnlineTime onlineTime) {
+        long allMinutes = this.onlineTime.getAllTimeInMinutes() + onlineTime.getAllTimeInMinutes();
+        this.onlineTime = new OnlineTime(allMinutes);
     }
 
     public HashMap<Material, Integer> getBlocks() {
@@ -165,6 +186,10 @@ public class Statistics {
         this.mobKills+=1;
     }
 
+    public void addMobKill(int kills) {
+        this.mobKills+=kills;
+    }
+
     public double getDamageTaken() {
         return damageTaken;
     }
@@ -175,5 +200,42 @@ public class Statistics {
 
     public void addDamageTaken(double damageTaken) {
         this.damageTaken+=damageTaken;
+    }
+
+    /**
+     * Addiert mehrere Statistiken zusammen und aktualisiert die aktuelle Instanz.
+     * Diese Methode hat keinen Rückgabewert und verarbeitet alle Statistiken, außer der HashMap "blocks", die auf Null
+     * gesetzt wird.
+     *
+     * @param statistics - Die Statistiken, die addiert werden sollen.
+     */
+    public void add(Statistics statistics) {
+        this.addDeath(statistics.deaths);
+        this.addKill(statistics.kills);
+        this.addBreakedBlocks(statistics.breakedBlocks);
+        this.addPlacedBlocks(statistics.placedBlocks);
+        this.addOnlineTime(statistics.onlineTime);
+        this.addDamage(statistics.damage);
+        this.addMobDamage(statistics.mobDamage);
+        this.addMobKill(statistics.mobKills);
+        this.addDamageTaken(statistics.damageTaken);
+
+        this.blocks = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Statistics{" +
+                "deaths=" + deaths +
+                ", kills=" + kills +
+                ", breakedBlocks=" + breakedBlocks +
+                ", placedBlocks=" + placedBlocks +
+                ", onlineTime=" + onlineTime +
+                ", blocks=" + blocks +
+                ", damage=" + damage +
+                ", mobDamage=" + mobDamage +
+                ", mobKills=" + mobKills +
+                ", damageTaken=" + damageTaken +
+                '}';
     }
 }
