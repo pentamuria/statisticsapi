@@ -20,6 +20,13 @@ public class COMMAND_allStatistics implements CommandExecutor {
 
         if(sender instanceof Player) {
             Player p = (Player)sender;
+
+            // Check if player operator
+            if(!p.isOp()) {
+                p.sendMessage("§4[Fehler] §8- §cDu muss Operator sein!");
+                return true;
+            }
+            
             if(args.length==0) {
                 p.openInventory(plugin.stats.getMainStatisticsInv(p,
                         plugin.stats.getAllStats()));
