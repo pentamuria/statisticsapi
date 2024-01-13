@@ -4,7 +4,9 @@ import de.pentamuria.statistics.commands.COMMAND_allStatistics;
 import de.pentamuria.statistics.commands.COMMAND_statistics;
 import de.pentamuria.statistics.events.StatisticsListener;
 import de.pentamuria.statistics.manager.StatsManager;
+import de.pentamuria.statistics.statistics.OnlineTime;
 import org.bukkit.Bukkit;
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -51,7 +53,9 @@ public final class StatisticsAPI extends JavaPlugin {
             @Override
             public void run() {
                 for(Player all : Bukkit.getOnlinePlayers()) {
-                    stats.getPlayerStats(all.getUniqueId().toString()).getOnlineTime().addMinute();
+                    // Zweiter Parameter damit aus Ticks generiert wird!
+                    OnlineTime onlineTime = new OnlineTime(all.getStatistic(Statistic.PLAY_ONE_MINUTE), "bar");
+                    stats.getPlayerStats(all.getUniqueId().toString()).setOnlineTime(onlineTime);
                 }
             }
         }, 20*60, 20*60);

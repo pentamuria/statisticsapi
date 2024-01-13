@@ -18,11 +18,30 @@ public class OnlineTime {
         this.days = 0;
     }
 
-
+    /**
+     * Dieser Konstruktor wandelt Minuten in die Spielzeit des Spielers um, ausgedrückt in Minuten, Stunden und Tagen.
+     *
+     * @param minutes Onlinezeit des Spielers in Minuten
+     */
     public OnlineTime(long minutes) {
         this.days = (int) (minutes/60/24);
         this.hours = (int) ((minutes-days*60*24)/60);
         this.minutes = (int) (minutes-(days*60*24)-(hours*60));
+    }
+
+    /**
+     * Dieser Konstruktor wandelt Ticks (jeweils 1/20 Sekunde) in die Spielzeit des Spielers um, ausgedrückt in Minuten, Stunden und Tagen.
+     * Der Parameter 'foo' existiert lediglich, weil bereits ein Konstruktor mit dem Parameter Typ 'long' vorhanden ist.
+     *
+     * @param ticks Onlinezeit des Spielers in Ticks
+     * @param foo Ein unnötiger Parameter, der einen leeren String enthalten kann.
+     */
+    public OnlineTime(long ticks, String foo) {
+        int calcMinutes = (int) (ticks/20/60);
+
+        this.days = (int) (calcMinutes/60/24);
+        this.hours = (int) ((calcMinutes-days*60*24)/60);
+        this.minutes = (int) (calcMinutes-(days*60*24)-(hours*60));
     }
 
     public int getMinutes() {

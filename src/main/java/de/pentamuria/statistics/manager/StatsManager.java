@@ -126,7 +126,6 @@ public class StatsManager extends StatsInventoryManager {
             if(cfg.contains("Kills"))stats.setKills(cfg.getInt("Kills"));
             if(cfg.contains("BreakedBlocks"))stats.setBreakedBlocks(cfg.getInt("BreakedBlocks"));
             if(cfg.contains("PlacedBlocks"))stats.setPlacedBlocks(cfg.getInt("PlacedBlocks"));
-            // OnlineTime
             if(cfg.contains("OnlineTime.Minutes"))stats.getOnlineTime().setMinutes(cfg.getInt("OnlineTime.Minutes"));
             if(cfg.contains("OnlineTime.Hours"))stats.getOnlineTime().setHours(cfg.getInt("OnlineTime.Hours"));
             if(cfg.contains("OnlineTime.Days"))stats.getOnlineTime().setDays(cfg.getInt("OnlineTime.Days"));

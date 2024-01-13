@@ -6,30 +6,50 @@ import java.util.HashMap;
 
 public class Statistics {
 
+    /**
+     * Anzahl der Tode des Spielers.
+     */
     private int deaths;
+    /**
+     * Anzahl der Kills an anderen Spielern.
+     */
     private int kills;
+    /**
+     * Anzahl der abgebauten Bloecke.
+     */
     private int breakedBlocks;
+    /**
+     * Anzahl der platzierten Blöcke.
+     */
     private int placedBlocks;
+    /**
+     * Onlinezeit Instanz.
+     */
     private OnlineTime onlineTime;
+    /**
+     * Hashmap mit allen abgebauten Blöcken.
+     */
     private HashMap<Material, Integer> blocks;
+    /**
+     * Verursachter Spieler-Schaden.
+     */
     private double damage;
+    /**
+     * Verursachter Mob-Schaden.
+     */
     private double mobDamage;
+    /**
+     * Anzahl der getöteten Mobs.
+     */
     private int mobKills;
+    /**
+     * Erlittender Schaden.
+     */
     private double damageTaken;
 
-
-    public Statistics(int deaths, int kills, int breakedBlocks, int placedBlocks, HashMap<Material, Integer> blocks,
-                      double damage, double mobDamage, int mobKills) {
-        this.deaths = deaths;
-        this.kills = kills;
-        this.breakedBlocks = breakedBlocks;
-        this.placedBlocks = placedBlocks;
-        this.blocks = blocks;
-        this.damage = damage;
-        this.mobDamage = mobDamage;
-        this.mobKills = mobKills;
-    }
-
+    /**
+     * Konstruktor erstellt eine leere Statistik.
+     */
     public Statistics() {
         this.deaths = 0;
         this.kills = 0;
@@ -43,41 +63,80 @@ public class Statistics {
         this.damageTaken = 0.0;
     }
 
+    /**
+     * Gibt die Anzahl der Tode des Spielers zurück.
+     * @return Anzahl der Tode
+     */
     public int getDeaths() {
         return deaths;
     }
 
+    /**
+     * Erhöht die Spieler Tode um genau 1.
+     */
     public void addDeath() {
         deaths+=1;
     }
 
+    /**
+     * Erhöht die Spieler Tode um x Tode.
+     * @param deaths Anzahl der neuen Tode
+     */
     public void addDeath(int deaths) {
         this.deaths+=deaths;
     }
 
+
+    /**
+     * Gibt die Anzahl der Kills an anderen Spielern zurück.
+     * @return Anzahl der Kills
+     */
     public int getKills() {
         return kills;
     }
+
+    /**
+     * Erhöht die Spieler Kills um genau 1.
+     */
     public void addKill() {
         kills+=1;
     }
 
+    /**
+     * Erhöht die Spieler Tode um x Kills.
+     * @param kills Anzahl der neuen Kills
+     */
     public void addKill(int kills) {
         this.kills+=kills;
     }
 
+    /**
+     * Gibt die Anzahl der abgebauten Blöcke des Spielers zurück.
+     * @return Anzahl der abgebauten Blöcke
+     */
     public int getBreakedBlocks() {
         return breakedBlocks;
     }
 
+    /**
+     * Erhöht die Blocke um genau 1.
+     */
     public void addBreakedBlocks() {
         breakedBlocks+=1;
     }
 
+    /**
+     * Erhöht die abgebauten Blocke um x Blocke.
+     * @param blocks Anzahl der neuen abgebauten Bloecke
+     */
     public void addBreakedBlocks(int blocks) {
         breakedBlocks+=blocks;
     }
 
+    /**
+     * Gibt die Anzahl der platzierten Blöcke zurück.
+     * @return Anzahl der platzierten Blöcke
+     */
     public int getPlacedBlocks() {
         return placedBlocks;
     }
@@ -150,6 +209,10 @@ public class Statistics {
         return mat;
     }
 
+    /**
+     * Gibt an, wie viel Schaden der Spieler insgesamt an andere ausgeteilt hat.
+     * @return Ausgeteilder Spieler-Schaden
+     */
     public double getDamage() {
         return damage;
     }
