@@ -140,7 +140,7 @@ public class StatsInventoryManager {
             blocks.add(Material.RED_MUSHROOM);
             blocks.add(Material.CRIMSON_FUNGUS);
             blocks.add(Material.WARPED_FUNGUS);
-            blocks.add(Material.GRASS);
+            blocks.add(Material.GRASS_BLOCK);
             blocks.add(Material.FERN);
             blocks.add(Material.DEAD_BUSH);
             blocks.add(Material.DANDELION);
